@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+'use strict';
+// Stable project entry; desktop Exec invokes this with its installed absolute Node path.
+require('./start.cjs').run().catch(error=>{process.stderr.write(`VEYL launch failed: ${error.message}\n`);process.exitCode=1;});
