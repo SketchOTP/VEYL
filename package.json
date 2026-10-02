@@ -1,0 +1,30 @@
+{
+  "name": "veyl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VEYL — a spacious Linux file explorer with a guarded agentic workspace",
+  "repository": {"type":"git","url":"git+ssh://git@github.com/SketchOTP/VEYL.git"},
+  "homepage": "https://github.com/SketchOTP/VEYL",
+  "license": "MIT",
+  "author": {"name":"SketchOTP","email":"sketchotp@gmail.com"},
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "node scripts/start.cjs",
+    "test": "node --test test/*.test.cjs",
+    "check": "node scripts/check.cjs",
+    "install-desktop": "node scripts/install-desktop.cjs",
+    "pack:linux": "electron-builder --config electron-builder.cjs --linux dir --x64 --publish never",
+    "dist:linux": "electron-builder --config electron-builder.cjs --linux deb tar.gz --x64 --publish never",
+    "verify:package": "node scripts/verify-package.cjs dist/linux-unpacked"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.15.3",
+    "playwright-core": "1.63.0"
+  },
+  "productName": "VEYL",
+  "desktopName": "io.github.SketchOTP.VEYL.desktop"
+}

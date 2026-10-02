@@ -1,0 +1,3 @@
+# VEYL uses its securely installed SUID helper. electron-builder packages this
+# inert comment-only resource at resources/apparmor-profile. VEYL's custom
+# package hooks do not copy it into /etc/apparmor.d or load any security policy.

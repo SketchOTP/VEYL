@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>VEYL</title>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#000"/>
+  <path d="M48 57h43l37 91 37-91h43l-80 145Z" fill="#8800ff" stroke="#8800ff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="m91 57 37 36 37-36M104 128l24 57 24-57" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=VEYL
+GenericName=File Explorer
+Comment=Explore and organize files with VEYL
+Exec=@EXEC@
+TryExec=@NODE@
+Path=@ROOT@
+Icon=@ICON@
+Terminal=false
+Categories=System;FileTools;FileManager;
+Keywords=Files;Folders;Assistant;Explorer;VEYL;
+StartupNotify=true
+StartupWMClass=io.github.SketchOTP.VEYL
+X-SYSTEMUS-Managed=true

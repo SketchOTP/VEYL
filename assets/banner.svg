@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title description">
+ <title id="title">VEYL — files, with intent</title><desc id="description">Flat black, white and electric-purple VEYL mark with a visual file grid.</desc>
+ <rect width="1280" height="400" rx="32" fill="#000"/>
+ <g transform="translate(64 72)"><rect width="256" height="256" rx="52" fill="#0b0b0b"/><path d="M48 57h43l37 91 37-91h43l-80 145Z" fill="#8800ff" stroke="#8800ff" stroke-width="5" stroke-linejoin="round"/><path d="m91 57 37 36 37-36M104 128l24 57 24-57" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></g>
+ <text x="365" y="191" fill="#fff" font-family="sans-serif" font-size="92" font-weight="800" letter-spacing="8">VEYL</text>
+ <text x="369" y="250" fill="#fff" font-family="sans-serif" font-size="28">Files, with intent.</text>
+ <g fill="#101010" stroke="#8800ff" stroke-width="3"><rect x="895" y="92" width="108" height="98" rx="20"/><rect x="1022" y="92" width="108" height="98" rx="20"/><rect x="895" y="210" width="108" height="98" rx="20"/><rect x="1022" y="210" width="108" height="98" rx="20"/></g>
+ <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M920 132v-15h24l12 11h24v38h-60Z"/><path d="M1049 119h33l16 16v31h-49Zm33 0v16h16M1058 148h29M1058 157h20"/><path d="m922 253 15-15 13 13 13-20 17 31h-58ZM1048 242l-10 17 10 17m31-34 10 17-10 17m-16-38-9 41"/></g>
+</svg>

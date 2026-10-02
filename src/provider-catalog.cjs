@@ -1,0 +1,14 @@
+'use strict';
+// Conservative, documented suggestions, not a promise of account/model availability.
+const CODEX_MODELS=Object.fromEntries(['gpt-6-astra','gpt-6.1-sol','gpt-6-sol','gpt-5.6-sol','gpt-5.6-terra','gpt-6-luna','gpt-5.6-luna','gpt-5.5'].map(model=>[model,['low','medium','high','xhigh',...(model==='gpt-5.5'?[]:['max']),...(['gpt-6-luna','gpt-5.6-luna','gpt-5.5'].includes(model)?[]:['ultra'])]]));
+const claude={'claude-opus-5-5':['low','medium','high','xhigh','max'],'claude-sonnet-5-5':['low','medium','high','xhigh','max'],'claude-sonnet-5':['low','medium','high','xhigh','max'],'claude-sonnet-4-6':['low','medium','high','max'],'claude-haiku-4-5':['default']};
+const CATALOG={
+ 'codex-cli':{label:'Codex CLI',models:CODEX_MODELS,defaultModel:'gpt-6-luna',defaultEffort:'medium',custom:false,images:true,docs:'https://learn.chatgpt.com/docs/non-interactive-mode'},
+ 'claude-cli':{label:'Claude CLI',models:claude,defaultModel:'claude-sonnet-5-5',defaultEffort:'medium',custom:true,images:true,docs:'https://code.claude.com/docs/en/cli-reference'},
+ 'openai-api':{label:'OpenAI API',models:{'gpt-6-luna':['low','medium','high','xhigh','max']},defaultModel:'gpt-6-luna',defaultEffort:'medium',custom:true,images:true,docs:'https://developers.openai.com/api/docs/guides/structured-outputs'},
+ 'anthropic-api':{label:'Anthropic API',models:claude,defaultModel:'claude-sonnet-5-5',defaultEffort:'medium',custom:true,images:true,docs:'https://platform.claude.com/docs/en/build-with-claude/effort'},
+ 'gemini-api':{label:'Gemini API',models:{'gemini-3.8-flash':['low','medium','high'],'gemini-3.1-pro-preview':['low','medium','high'],'gemini-2.5-flash':['default','low','medium','high'],'gemini-2.5-pro':['default','low','medium','high']},defaultModel:'gemini-3.8-flash',defaultEffort:'medium',custom:true,images:true,docs:'https://ai.google.dev/api/generate-content'}
+};
+function validateSelection(selection){const info=CATALOG[selection?.type];if(!info||typeof selection.model!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9_.+-]{0,119}$/.test(selection.model))throw Object.assign(new Error('Choose a provider model identifier without paths or URLs.'),{code:'MODEL_CONFIG'});const efforts=info.models[selection.model]||(info.custom?['default']:[]);if(!efforts.includes(selection.effort))throw Object.assign(new Error('The selected effort is not supported for this provider/model. Custom models require default effort; no fallback is used.'),{code:'MODEL_CONFIG'});return info;}
+function imageSelection(selection){const info=validateSelection(selection);if(!info.images||!Object.hasOwn(info.models,selection.model))throw Object.assign(new Error('Image input is not verified for this provider/model. Choose a supported image-capable suggestion; no pixels were sent.'),{code:'IMAGE_CAPABILITY'});}
+module.exports={CATALOG,CODEX_MODELS,validateSelection,imageSelection};

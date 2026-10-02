@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+# Bundled Electron supplies its own Node runtime. This wrapper accepts no Chromium flags.
+[ "$#" -eq 0 ] || { echo 'VEYL launcher accepts no arguments; choose a folder in the app.' >&2; exit 1; }
+veyl_root=$(CDPATH= cd -- "$(/usr/bin/dirname -- "$0")" && pwd -P)
+. "$veyl_root/sandbox-helper.sh"
+if [ "${CHROME_DEVEL_SANDBOX+x}" = x ]; then
+    veyl_secure_helper "$CHROME_DEVEL_SANDBOX" || { echo 'VEYL refused the configured CHROME_DEVEL_SANDBOX: it must be a trusted root:root4755 regular helper with secure parents.' >&2; exit 1; }
+else
+    CHROME_DEVEL_SANDBOX=
+    for veyl_helper in "$veyl_root/chrome-sandbox" /opt/google/chrome/chrome-sandbox; do
+        if veyl_secure_helper "$veyl_helper"; then CHROME_DEVEL_SANDBOX=$veyl_helper; break; fi
+    done
+    [ -n "$CHROME_DEVEL_SANDBOX" ] || { echo 'VEYL requires an existing trusted root:root4755 Chromium helper. Install the VEYL Debian package or configure a securely installed helper. Sandbox protection will not be disabled.' >&2; exit 1; }
+fi
+export CHROME_DEVEL_SANDBOX
+unset ELECTRON_RUN_AS_NODE
+PATH="${HOME:?HOME must be set}/.local/bin:${PATH:-/usr/local/bin:/usr/bin:/bin}"; export PATH
+cd -- "$veyl_root"
+exec "$veyl_root/veyl-bin" --class=io.github.SketchOTP.VEYL
